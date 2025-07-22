@@ -64,7 +64,6 @@
                         </div>
                         <div class="our-featured-service__content">
                             <div class="our-featured-service__text">
-                                <span>Pertanian</span>
                                 <h6 class="title-animation"><a href="service-details.html">Pertanian</a></h6>
                             </div>
 
@@ -90,7 +89,6 @@
                         </div>
                         <div class="our-featured-service__content">
                             <div class="our-featured-service__text">
-                                <span>UMKM</span>
                                 <h6 class="title-animation"><a href="service-details.html">UMKM</a></h6>
                             </div>
 
@@ -112,7 +110,6 @@
                         </div>
                         <div class="our-featured-service__content">
                             <div class="our-featured-service__text">
-                                <span>Pariwisata</span>
                                 <h6 class="title-animation"><a href="service-details.html">Pariwisata</a></h6>
                             </div>
 
@@ -132,7 +129,6 @@
                         </div>
                         <div class="our-featured-service__content">
                             <div class="our-featured-service__text">
-                                <span>Architecture</span>
                                 <h6 class="title-animation"><a href="service-details.html">Decoration art</a></h6>
                             </div>
 

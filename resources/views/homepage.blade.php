@@ -210,7 +210,7 @@
                         <div class="icon"> <i class="fa-sharp-duotone fa-solid fa-play"></i> </div>
                     </a>
 
-                    <h2 class="text-white title-animation">Jelajahi Keindahan dan Potensi<br>dari Desa Talun</h2>
+                    <h2 class="text-white title-animation   homepage-halfwidth">Jelajahi Keindahan dan Potensi dari Desa Talun</h2>
                 </div>
             </div>
         </div>

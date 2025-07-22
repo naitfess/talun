@@ -48,7 +48,6 @@
                                 <li><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
                                 <li><a href="https://twitter.com/"><i class="fab fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -72,12 +71,12 @@
                             <nav id="mobile-menu">
                                 <ul>
                                     <li class="active">
-                                        <a href="javascript:void(0)">Beranda</a>
+                                        <a href="{{ route('homepage') }}">Beranda</a>
                                     </li>                                   
                                     <li class="has-dropdown">
                                         <a href="#">Tentang Talun</a>
                                         <ul class="submenu">
-                                            <li><a href="#">Sejarah Desa</a></li>
+                                            <li><a href="{{ route('about-us') }}">Sejarah Desa</a></li>
                                             <li><a href="#">Visi Misi</a></li>
                                             <li><a href="#">Geografis & Demografi</a></li>
                                         </ul>
@@ -87,20 +86,20 @@
                                         <ul class="submenu">
                                             <li><a href="#">Struktur Organisasi</a></li>
                                             <li><a href="#">Profil Perangkat</a></li>
-                                            <li><a href="#">Lembaga Desa</a></li>
+                                            <li><a href="{{ route('village-institutions') }}">Lembaga Desa</a></li>
                                         </ul>
                                     </li>
                                     <li class="has-dropdown">
                                         <a href="#">Data Desa</a>
                                         <ul class="submenu">
                                             <li><a href="#">Kesehatan</a></li>
-                                            <li><a href="#">Dukuh</a></li>
+                                            <li><a href="{{ route('sub-villages') }}">Dukuh</a></li>
                                         </ul>
                                     </li>
                                     <li class="">
-                                        <a href="#">Artikel</a>
+                                        <a href="{{ route('articles') }}">Artikel</a>
                                     </li>
-                                    <li><a href="#">Kontak</a></li>
+                                    <li><a href="{{ route('contact-us') }}">Kontak</a></li>
                                 </ul>
                             </nav>
                         </div>

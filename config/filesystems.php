@@ -60,6 +60,12 @@ return [
             'report' => false,
         ],
 
+        'public_upload' => [
+            'driver' => 'local',
+            'root' => public_path('uploads'),
+            'visibility' => 'public',
+        ]
+
     ],
 
     /*

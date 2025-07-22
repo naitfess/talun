@@ -98,7 +98,6 @@
                         <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-f"></i></a>
                         <a href="https://twitter.com/"><i class="fa-brands fa-twitter"></i></a>
                         <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://bd.linkedin.com/"><i class="fa-brands fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>

@@ -19,19 +19,19 @@
                 @for ($i = 0; $i<6; $i++)    
                 <div class="col-lg-4">
                     <div class="blog-grid__item">
-                        <a href="blog-details.html" class="blog-grid__media">
+                        <a href="{{ route('article-details') }}" class="blog-grid__media">
                             <img src="{{ asset('artima') }}/imgs/blog-grid/blog-1.png" alt="image not found">
                         </a>
                         <div class="blog-grid__content">
                             <ul class="blog-grid__meta">
-                                <li><a href="blog-details.html">26 January 2024</a></li>
-                                <li><a href="blog-details.html">Architecture</a></li>
+                                <li><a href="{{ route('article-details') }}">26 January 2024</a></li>
+                                <li><a href="{{ route('article-details') }}">Architecture</a></li>
                             </ul>
-                            <h6 class="mb-10"><a href="blog-details.html">Five Quick Tips Regarding Architecture.</a></h6>
+                            <h6 class="mb-10"><a href="{{ route('article-details') }}">Five Quick Tips Regarding Architecture.</a></h6>
 
                             <p>Bibendum est ultricies integer quis auctor elit sed vulputate Vivamus...</p>
 
-                            <a class="read-more" href="blog-details.html">Read More
+                            <a class="read-more" href="{{ route('article-details') }}">Read More
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 6H11" stroke="#767676" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M6 1L11 6L6 11" stroke="#767676" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

@@ -160,7 +160,7 @@
     }
 }
 
-@media (max-width: 575px), only screen and (min-width: 576px) and (max-width: 767px), only screen and (min-width: 768px) and (max-width: 991.5px), only screen and (min-width: 991.5px) and (max-width: 1199px) {
+@media (max-width: 575px), only screen and (min-width: 576px) and (max-width: 766.5px), only screen and (min-width: 766.5px) and (max-width: 991.5px), only screen and (min-width: 991.5px) and (max-width: 1199px) {
     .header__main {
         padding: 15px 0;
     }
@@ -193,66 +193,51 @@
     border: 2px solid rgb(80 107 144 / 30%);
 }
 
-/* 
-.main-menu ul li.active > a {
-    color: var(--rr-light-secondary);
-}
-
-.main-menu ul li:hover > a {
-    color: var(--rr-light-secondary);
-}
-
-.footer-5-bg {
-    background-color: var(--rr-heading-primary);
-}
-
-.main-menu ul li:hover > a::after {
-    color: var(--rr-light-secondary);
-}
-
-.main-menu ul li .submenu {
-    background: var(--rr-heading-primary);
-    border: 1px solid var(--rr-light-secondary);
-}
-
-.main-menu ul li .submenu li:hover > a {
-    color: var(--rr-light-secondary);
-}
-
-.main-menu ul li .submenu li a::before {
-    background-color: var(--rr-light-secondary);
-}
-
-.main-menu ul li > a {
-    padding: 35px 0;
-}
-
-.banner-5__image {
-    position: absolute;
-    right: 0px;
-    width: 100%;
-}
-
-.banner-5__image img {
-    opacity: 0.8;
-}
-
-.latest-article__slider {
-    z-index: unset;
-}
-
-.slider-navigation{
-    display: none;
-}
-
-@media (max-width: 1200px) {
-    .slider-navigation{
-        display: flex;
-    }
-} */
-
 @media (min-width: 1200px) {
     .banner-2__content {
         max-width: 900px;
     }
+}
+
+
+/* metronic */
+
+.border-top-sm{
+    border-top: 1px solid var(--bs-card-border-color) !important;
+}
+
+.border-bottom-sm{
+    border-bottom: 1px solid var(--bs-card-border-color) !important;
+}
+
+.border-bottom-hp{
+    border-bottom: 1px solid var(--bs-border-color) !important;
+}
+
+.homepage-halfwidth {
+    width: 100%;
+}
+
+@media (min-width: 991px) {
+    .homepage-halfwidth {
+        width: 50%;
+    }
+}
+
+.select-solid{
+    background-color: var(--bs-gray-100);
+    border-color: var(--bs-gray-100);
+    color: var(--bs-gray-700);
+    transition: color 0.2s ease;
+}
+
+.slider-image-size{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 0.625rem;
+}
+
+.bg-form-delete{
+    background-color: var(--bs-primary-light);
 }

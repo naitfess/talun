@@ -13,8 +13,8 @@
 /.zed
 /auth.json
 /node_modules
-/public/artima
 /public/metronic
+/public/artima
 /public/build
 /public/hot
 /public/storage

@@ -6,12 +6,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Artima – Modern Architecture & Interior HTML5 Template</title>
-    <meta name="description" content="Artima – Modern Architecture & Interior HTML5 Template">
+    <title>Desa Talun</title>
+    <meta name="description" content="Desa Talun">
     <meta name="author" content="ranaahmead">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Place favicon.ico in the root directory -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('artima') }}/imgs/favicon.svg">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('common') }}/img/favicon.ico">
     <!-- CSS here -->
     <link rel="stylesheet" href="{{ asset('artima') }}/css/vendor/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('artima') }}/css/vendor/animate.min.css">
