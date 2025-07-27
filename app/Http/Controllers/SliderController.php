@@ -12,14 +12,16 @@ class SliderController extends Controller
 {
     public function index()
     {
+        $data['page_title'] = 'Slider';
         $data['sliders'] = Slider::query()
-            ->paginate(3);
+        ->paginate(3);
         return view('admin.sliders.index', $data);
     }
     
     public function create()
     {
-        return view('admin.sliders.create');
+        $data['page_title'] = 'Slider';
+        return view('admin.sliders.create', $data);
     }
     
     public function store(Request $request)
@@ -58,6 +60,7 @@ class SliderController extends Controller
     
     public function edit($id)
     {
+        $data['page_title'] = 'Slider';
         $data['slider'] = Slider::findOrFail($id);
         return view('admin.sliders.edit', $data);
     }

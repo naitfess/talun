@@ -1,6 +1,7 @@
 @extends('layouts.be-layout')
 @section('content')
 <!--begin::Card-->
+@include('inc.alert')
 <div class="card card-flush">
     <!--begin::Card header-->
     <div class="card-header mt-6">
@@ -12,7 +13,9 @@
                     <span class="path1"></span>
                     <span class="path2"></span>
                 </i>
-                <input type="text" data-kt-permissions-table-filter="search" class="form-control form-control-solid w-250px ps-13" placeholder="Cari User" />
+                <form action="{{ route('admin.user.index') }}" method="GET">
+                    <input type="text" name="search" class="form-control form-control-solid w-250px ps-13" placeholder="Cari User" value="{{ request('search') }}"/>
+                </form>
             </div>
             <!--end::Search-->
         </div>
@@ -20,7 +23,7 @@
         <!--begin::Card toolbar-->
         <div class="card-toolbar">
             <!--begin::Button-->
-            <button type="button" class="btn btn-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_permission">
+            <button type="button" class="btn btn-light-primary" data-bs-toggle="modal" data-bs-target="#add_user_modal">
                 <i class="ki-duotone ki-plus-square fs-3">
                     <span class="path1"></span>
                     <span class="path2"></span>
@@ -34,28 +37,25 @@
         <!--begin::Card body-->
         <div class="card-body pt-0 table-responsive">
             <!--begin::Table-->
-            <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0" id="kt_permissions_table">
+            <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
                 <thead>
                     <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
                         <th class="min-w-125px">Name</th>
                         <th class="min-w-250px">Role</th>
-                        <th class="min-w-125px">Username</th>
+                        <th class="min-w-125px">Email</th>
                         <th class="text-end min-w-100px">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="fw-semibold text-gray-600">
+                    @foreach ($users as $user)
                     <tr>
-                        <td>Content Management</td>
+                        <td>{{ $user->name }}</td>
                         <td>
-                            <a href="apps/user-management/roles/view.html" class="badge badge-light-primary fs-7 m-1">Administrator</a>
-                            <a href="apps/user-management/roles/view.html" class="badge badge-light-danger fs-7 m-1">Developer</a>
-                            <a href="apps/user-management/roles/view.html" class="badge badge-light-success fs-7 m-1">Analyst</a>
-                            <a href="apps/user-management/roles/view.html" class="badge badge-light-info fs-7 m-1">Support</a>
-                            <a href="apps/user-management/roles/view.html" class="badge badge-light-warning fs-7 m-1">Trial</a>
+                            <a class="badge badge-light-primary fs-7 m-1">Admin</a>
                         </td>
-                        <td>25 Jul 2024, 11:30 am</td>
+                        <td>{{ $user->email }}</td>
                         <td class="text-end">
-                            <button class="btn btn-icon btn-active-light-primary w-30px h-30px me-0" data-bs-toggle="modal" data-bs-target="#kt_modal_update_permission">
+                            <button class="btn btn-icon btn-active-light-primary w-30px h-30px me-0" data-bs-toggle="modal" data-bs-target="#edit_user_modal" data-id="{{ $user->id }}" data-name="{{ $user->name }}" data-email="{{ $user->email }}">
                                 <i class="ki-duotone ki-setting-3 fs-3">
                                     <span class="path1"></span>
                                     <span class="path2"></span>
@@ -64,7 +64,7 @@
                                     <span class="path5"></span>
                                 </i>
                             </button>
-                            <button class="btn btn-icon btn-active-light-primary w-30px h-30px" data-kt-permissions-table-filter="delete_row">
+                            <button class="btn btn-icon btn-active-light-primary w-30px h-30px delete-btn" data-bs-toggle="modal" data-bs-target="#delete-modal" data-id="{{ $user->id }}">
                                 <i class="ki-duotone ki-trash fs-3">
                                     <span class="path1"></span>
                                     <span class="path2"></span>
@@ -75,8 +75,17 @@
                             </button>
                         </td>
                     </tr>
+                    @endforeach
+                    @if($users->isEmpty())
+                    <tr>
+                        <td colspan="4" class="text-center text-muted fs-6 fw-semibold">Belum ada data yang tersedia</td>
+                    </tr>
+                    @endif
                 </tbody>
             </table>
+            <div class="mt-7">
+                {{ $users->links('pagination::bootstrap-5') }}
+            </div>
             <!--end::Table-->
         </div>
         <!--end::Card body-->
@@ -84,7 +93,7 @@
     <!--end::Card-->
     <!--begin::Modals-->
     <!--begin::Modal - Add permissions-->
-    <div class="modal fade" id="kt_modal_add_permission" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="add_user_modal" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog modal-dialog-centered mw-650px">
             <!--begin::Modal content-->
@@ -107,7 +116,8 @@
                 <!--begin::Modal body-->
                 <div class="modal-body mx-5 mx-xl-15 my-7">
                     <!--begin::Form-->
-                    <form id="kt_modal_add_permission_form" class="form" action="#">
+                    <form id="add_user_modal_form" class="form" action="{{ route('admin.user.store') }}" method="POST">
+                        @csrf
                         <!--begin::Input group-->
                         <div class="fv-row mb-7">
                             <!--begin::Label-->
@@ -116,29 +126,32 @@
                             </label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input class="form-control form-control-solid" placeholder="Enter a permission name" name="permission_name" />
+                            <input type="text" class="form-control form-control-solid" placeholder="Nama User" name="name" />
                             <!--end::Input-->
                         </div>
                         <!--begin::Input group-->
                         <div class="fv-row mb-7">
                             <!--begin::Label-->
                             <label class="fs-6 fw-semibold form-label mb-2">
-                                <span class="">Username</span>
-                                <span class="ms-2" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-html="true" data-bs-content="Permission names is required to be unique.">
-                                    <i class="ki-duotone ki-information fs-7">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                        <span class="path3"></span>
-                                    </i>
-                                </span>
+                                <span class="">Email</span>
                             </label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input class="form-control form-control-solid" placeholder="Enter a permission name" name="permission_name" />
+                            <input type="email" class="form-control form-control-solid" placeholder="Email" name="email" />
+                            <!--end::Input-->
+                        </div>
+                        <div class="fv-row mb-7">
+                            <!--begin::Label-->
+                            <label class="fs-6 fw-semibold form-label mb-2">
+                                <span class="">Password</span>
+                            </label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input type="password" class="form-control form-control-solid" placeholder="Password" name="password" />
                             <!--end::Input-->
                         </div>
                         <!--begin::Input group-->
-                        <div class="fv-row mb-7">
+                        {{-- <div class="fv-row mb-7">
                             <!--begin::Label-->
                             <label class="form-label">Role</label>
                             <!--end::Label-->
@@ -152,12 +165,11 @@
                             </select>
                             <!--end::Select2-->
                             <!--begin::Description-->
-                            {{-- <div class="text-muted fs-7 mb-7">Set the date of the order to process.</div> --}}
-                        </div>
+                        </div> --}}
                         <!--end::Input group-->
                         <!--begin::Actions-->
                         <div class="text-end pt-3">
-                            <button type="reset" class="btn btn-light me-3">Batalkan</button>
+                            <button class="btn btn-light me-3" data-bs-dismiss="modal">Batal</button>
                             <button type="submit" class="btn btn-primary">
                                 <span class="indicator-label">Simpan</span>
                             </button>
@@ -174,7 +186,7 @@
     </div>
     <!--end::Modal - Add permissions-->
     <!--begin::Modal - Update permissions-->
-    <div class="modal fade" id="kt_modal_update_permission" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="edit_user_modal" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog modal-dialog-centered mw-650px">
             <!--begin::Modal content-->
@@ -197,7 +209,9 @@
                 <!--begin::Modal body-->
                 <div class="modal-body mx-5 mx-xl-15 my-7">
                     <!--begin::Form-->
-                    <form id="kt_modal_update_permission_form" class="form" action="#">
+                    <form id="edit_user_modal_form" class="form" method="POST" action="{{ route('admin.user.update', ['id' => ':id']) }}">
+                        @csrf
+                        @method('PUT')
                         <!--begin::Input group-->
                         <div class="fv-row mb-7">
                             <!--begin::Label-->
@@ -206,27 +220,30 @@
                             </label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input class="form-control form-control-solid" placeholder="Enter a permission name" name="permission_name" />
+                            <input type="text" class="form-control form-control-solid" placeholder="Nama User" name="name" value=""/>
                             <!--end::Input-->
                         </div>
                         <div class="fv-row mb-7">
                             <!--begin::Label-->
                             <label class="fs-6 fw-semibold form-label mb-2">
-                                <span class="">Username</span>
-                                <span class="ms-2" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-html="true" data-bs-content="Permission names is required to be unique.">
-                                    <i class="ki-duotone ki-information fs-7">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                        <span class="path3"></span>
-                                    </i>
-                                </span>
+                                <span class="">Email</span>
                             </label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input class="form-control form-control-solid" placeholder="Enter a permission name" name="permission_name" />
+                            <input type="email" class="form-control form-control-solid" placeholder="Email" name="email" readonly/>
                             <!--end::Input-->
                         </div>
                         <div class="fv-row mb-7">
+                            <!--begin::Label-->
+                            <label class="fs-6 fw-semibold form-label mb-2">
+                                <span class="">Password Baru</span>
+                            </label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input type="password" class="form-control form-control-solid" placeholder="Password Baru" name="password" />
+                            <!--end::Input-->
+                        </div>
+                        {{-- <div class="fv-row mb-7">
                             <!--begin::Label-->
                             <label class="form-label">Role</label>
                             <!--end::Label-->
@@ -239,12 +256,12 @@
                                 <option value="paypal">Paypal</option>
                             </select>
                             <!--end::Select2-->
-                        </div>
+                        </div> --}}
                         <!--end::Input group-->
                         <!--begin::Actions-->
                         <div class="text-end pt-3">
-                            <button type="reset" class="btn btn-light me-3" data-kt-permissions-modal-action="cancel">Discard</button>
-                            <button type="submit" class="btn btn-primary" data-kt-permissions-modal-action="submit">
+                            <button class="btn btn-light me-3" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary">
                                 <span class="indicator-label">Submit</span>
                             </button>
                         </div>
@@ -260,4 +277,27 @@
     </div>
     <!--end::Modal - Update permissions-->
     <!--end::Modals-->
+    @endsection
+    @section('scripts')
+    <script>
+        $('.delete-btn').on('click', function() {
+            var id = $(this).data('id');
+            var url = '{{ route("admin.user.destroy", ":id") }}';
+            url = url.replace(':id', id);
+            $('#delete-form').attr('action', url);
+        });
+        
+        $('#edit_user_modal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+            var name = button.data('name');
+            var email = button.data('email');
+            var modal = $(this);
+            modal.find('.modal-body input[name="name"]').val(name);
+            modal.find('.modal-body input[name="email"]').val(email);
+            var actionUrl = '{{ route("admin.user.update", ":id") }}';
+            actionUrl = actionUrl.replace(':id', id);
+            modal.find('#edit_user_modal_form').attr('action', actionUrl);
+        });
+    </script>
     @endsection

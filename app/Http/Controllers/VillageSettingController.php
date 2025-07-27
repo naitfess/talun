@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class VillageSettingController extends Controller
 {
     public function index(){
+        $data['page_title'] = 'Informasi Desa';
         $data['villageSetting'] = VillageSetting::first();
         return view('admin.settings.index', $data);
     }

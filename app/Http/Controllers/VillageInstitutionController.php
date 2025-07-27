@@ -18,14 +18,15 @@ class VillageInstitutionController extends Controller
             $search = $request->search;
             $query->where('name', 'like', "%$search%");
         }
-        
+        $data['page_title'] = 'Lembaga Desa';
         $data['villageInstitutions'] = $query->paginate(10)->appends(['search' => $request->search]);
         return view('admin.village-institutions.index', $data);
     }
     
     public function create()
     {
-        return view('admin.village-institutions.create');
+        $data['page_title'] = 'Lembaga Desa';
+        return view('admin.village-institutions.create', $data);
     }
     
     public function store(Request $request)

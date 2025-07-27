@@ -1,22 +1,23 @@
 <?php
 
-use App\Http\Controllers\ArticleController;
 use App\Models\Position;
 use App\Models\VillageInstitution;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\PageController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\SubVillageController;
 use App\Http\Controllers\VillageSettingController;
 use App\Http\Controllers\VillageOfficialController;
 use App\Http\Controllers\VillageInstitutionController;
 
-// ->middleware('auth')
 Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
+    $data['page_title'] = 'Dashboard';
+    return view('admin.dashboard', $data);
 })->middleware('auth')->name('admin.dashboard');
 
 Route::prefix('admin/informasi-desa')->middleware('auth')->name('admin.informasi-desa.')->group(function () {
@@ -100,7 +101,12 @@ Route::prefix('admin/dukuh')->middleware('auth')->name('admin.dukuh.')->group(fu
 });
 
 Route::prefix('admin/user')->middleware('auth')->name('admin.user.')->group(function () {
-    Route::get('/', function () { return view('admin.users.index');})->name('index');
+   Route::get('/', [UserController::class, 'index'])->name('index');
+    Route::get('/create', [UserController::class, 'create'])->name('create');
+    Route::post('/', [UserController::class, 'store'])->name('store');
+    Route::get('/{id}/edit', [UserController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [UserController::class, 'update'])->name('update');
+    Route::delete('/{id}', [UserController::class, 'destroy'])->name('destroy');
 });
 
 Route::middleware('auth')->group(function () {

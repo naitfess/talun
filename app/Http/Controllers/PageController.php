@@ -14,6 +14,7 @@ class PageController extends Controller
 {
     public function beranda()
     {
+        $data['page_title'] = 'Beranda';
         $data['village_head'] = \App\Models\VillageOfficial::where('position_id', 1)->first();
         $data['page'] = Page::where('slug', 'beranda')->first();
         $data['content'] = json_decode($data['page']->content, true);
@@ -22,6 +23,7 @@ class PageController extends Controller
     
     public function sejarahDesa()
     {
+        $data['page_title'] = 'Sejarah Desa';
         $data['page'] = Page::where('slug', 'sejarah-desa')->first();
         $data['content'] = json_decode($data['page']->content, true);
         return view('admin.pages.about-us', $data);
@@ -29,6 +31,7 @@ class PageController extends Controller
     
     public function visiMisi()
     {
+        $data['page_title'] = 'Visi Misi';
         $data['page'] = Page::where('slug', 'visi-misi')->first();
         $data['content'] = json_decode($data['page']->content, true);
         return view('admin.pages.page-detail', $data);
@@ -36,6 +39,7 @@ class PageController extends Controller
     
     public function monografiDesa()
     {
+        $data['page_title'] = 'Monografi Desa';
         $data['page'] = Page::where('slug', 'monografi-desa')->first();
         $data['content'] = json_decode($data['page']->content, true);
         // dd($data['content']);
@@ -44,6 +48,7 @@ class PageController extends Controller
     
     public function strukturOrganisasi()
     {
+        $data['page_title'] = 'Struktur Organisasi';
         $data['page'] = Page::where('slug', 'struktur-organisasi')->first();
         $data['content'] = json_decode($data['page']->content, true);
         return view('admin.pages.page-detail', $data);
@@ -51,6 +56,7 @@ class PageController extends Controller
     
     public function perangkatDesa()
     {
+        $data['page_title'] = 'Perangkat Desa';
         $data['villageOfficials'] = VillageOfficial::query()
         ->select('name', 'position_id')
         ->with('position')
@@ -62,6 +68,7 @@ class PageController extends Controller
     
     public function lembagaDesa()
     {   
+        $data['page_title'] = 'Lembaga Desa';
         $data['villageInstitutions'] = VillageInstitution::query()
         ->select('name')
         ->get();
@@ -72,6 +79,7 @@ class PageController extends Controller
     
     public function hubungiKami()
     {
+        $data['page_title'] = 'Hubungi Kami';
         $data['page'] = Page::where('slug', 'hubungi-kami')->first();
         $data['content'] = json_decode($data['page']->content, true);
         return view('admin.pages.contact', $data);
@@ -79,6 +87,7 @@ class PageController extends Controller
     
     public function kesehatan()
     {
+        $data['page_title'] = 'Kesehatan';
         $data['page'] = Page::where('slug', 'kesehatan')->first();
         $data['content'] = json_decode($data['page']->content, true);
         return view('admin.pages.page-detail', $data);

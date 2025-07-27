@@ -164,7 +164,7 @@
                                             <!--begin::Username-->
                                             <div class="d-flex flex-column">
                                                 <div class="fw-bold d-flex align-items-center fs-5">{{ Auth::user()->name }}
-                                                    <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span></div>
+                                                    <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Admin</span></div>
                                                     <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">{{ Auth::user()->email }}</a>
                                                 </div>
                                                 <!--end::Username-->
@@ -242,7 +242,7 @@
                                         <!--begin::Page title-->
                                         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                                             <!--begin::Title-->
-                                            <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">Multipurpose</h1>
+                                            <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">{{ $page_title }}</h1>
                                             <!--end::Title-->
                                             <!--begin::Breadcrumb-->
                                             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -257,7 +257,7 @@
                                                 </li>
                                                 <!--end::Item-->
                                                 <!--begin::Item-->
-                                                <li class="breadcrumb-item text-muted">Dashboards</li>
+                                                <li class="breadcrumb-item text-muted">{{ $page_title }}</li>
                                                 <!--end::Item-->
                                             </ul>
                                             <!--end::Breadcrumb-->

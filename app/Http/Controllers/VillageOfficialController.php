@@ -23,14 +23,15 @@ class VillageOfficialController extends Controller
                 });
             });
         }
-
+        $data['page_title'] = 'Perangkat Desa';
         $data['villageOfficials'] = $query->paginate(10)->appends(['search' => $request->search]);
         return view('admin.village-officials.index', $data);
     }
     
     public function create()
     {
-        return view('admin.village-officials.create');
+        $data['page_title'] = 'Perangkat Desa';
+        return view('admin.village-officials.create', $data);
     }
     
     public function store(Request $request)
@@ -69,6 +70,7 @@ class VillageOfficialController extends Controller
     
     public function edit($id)
     {
+        $data['page_title'] = 'Perangkat Desa';
         $data['villageOfficial'] = VillageOfficial::findOrFail($id);
         return view('admin.village-officials.edit', $data);
     }

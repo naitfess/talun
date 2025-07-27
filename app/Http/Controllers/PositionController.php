@@ -16,6 +16,7 @@ class PositionController extends Controller
             $search = request()->search;
             $query->where('name', 'like', "%$search%");
         }
+        $data['page_title'] = 'Posisi';
         $data['positions'] = $query->paginate(5)->appends(['search' => $request->search]);
         return view('admin.positions.index', $data);
     }

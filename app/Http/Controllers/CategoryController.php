@@ -17,13 +17,14 @@ class CategoryController extends Controller
             $search = $request->search;
             $query->where('name', 'like', "%$search%");
         }
-        
+        $data['page_title'] = 'Kategori';
         $data['categories'] = $query->paginate(10)->appends(['search' => $request->search]);
         return view('admin.categories.index', $data);
     }
     
     public function show($slug)
     {
+        $data['page_title'] = 'Kategori';
         $data['category'] = Category::where('slug', $slug)->firstOrFail();
         return $data['category'];
     }
