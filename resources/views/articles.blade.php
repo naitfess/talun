@@ -16,22 +16,21 @@
                 </div>
             </div>
             <div class="row mb-minus-30">
-                @for ($i = 0; $i<6; $i++)    
+                @foreach ($articles as $article)    
                 <div class="col-lg-4">
                     <div class="blog-grid__item">
-                        <a href="{{ route('article-details') }}" class="blog-grid__media">
-                            <img src="{{ asset('artima') }}/imgs/blog-grid/blog-1.png" alt="image not found">
+                        <a href="{{ route('artikel-detail', ['slug' => $article->slug]) }}" class="blog-grid__media">
+                            <img src="{{ asset('uploads') }}/{{ $article->image }}" alt="image not found">
                         </a>
                         <div class="blog-grid__content">
                             <ul class="blog-grid__meta">
-                                <li><a href="{{ route('article-details') }}">26 January 2024</a></li>
-                                <li><a href="{{ route('article-details') }}">Architecture</a></li>
+                                <li>{{ \Carbon\Carbon::parse($article->created_at)->translatedFormat('d F Y') }}</li>
+                                <li><a href="{{ route('artikel-kategori', ['slug' => $article->category->slug]) }}">{{ $article->category->name }}</a></li>
                             </ul>
-                            <h6 class="mb-10"><a href="{{ route('article-details') }}">Five Quick Tips Regarding Architecture.</a></h6>
+                            <h6 class="mb-10"><a href="{{ route('artikel-detail', ['slug' => $article->slug]) }}">{{ $article->title }}</a></h6>
+                            {!! Str::limit($article->content, 100) !!}
 
-                            <p>Bibendum est ultricies integer quis auctor elit sed vulputate Vivamus...</p>
-
-                            <a class="read-more" href="{{ route('article-details') }}">Read More
+                            <a class="read-more" href="{{ route('artikel-detail', ['slug' => $article->slug]) }}">Selengkapnya
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 6H11" stroke="#767676" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M6 1L11 6L6 11" stroke="#767676" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -41,27 +40,9 @@
                         </div>
                     </div>
                 </div>
-                @endfor
+                @endforeach
 
-                <ul class="blog-3__pagination d-flex flex-wrap align-items-center justify-content-center mt-30">
-                    <li>
-                        <a class="active" href="#">
-                        <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6 11L1 6L6 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M13 11L8 6L13 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        </a>
-                    </li>
-                    <li><a href="#">1</a></li>
-                    <li><a  class="active" href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="blog-details.html">
-                        <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 11L13 6L8 1" stroke="#080A0B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M1 11L6 6L1 1" stroke="#080A0B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>                                
-                    </a></li>
-                </ul>
+                {{ $articles->links('pagination::fe-default') }}
             </div>
         </div>
     </section>    

@@ -62,7 +62,7 @@
                     </a>
                     <!--end:Menu link-->
                 </div>
-                <!--end:Menu item-->    
+                <!--end:Menu item-->  
                 <div class="menu-item">
                     <!--begin:Menu link-->
                     <a class="menu-link" href="{{ route('admin.perangkat-desa.index') }}">
@@ -138,11 +138,11 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('admin.halaman.geografis-demografi') }}">
+                            <a class="menu-link" href="{{ route('admin.halaman.monografi-desa') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Geografis & Demografi</span>
+                                <span class="menu-title">Monografi Desa</span>
                             </a>
                         </div>
                         <!--end:Menu item-->
@@ -176,11 +176,11 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('admin.halaman.profil-perangkat') }}">
+                            <a class="menu-link" href="{{ route('admin.halaman.perangkat-desa') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Profil Perangkat</span>
+                                <span class="menu-title">Perangkat Desa</span>
                             </a>
                         </div>
                         <div class="menu-item">
@@ -252,7 +252,7 @@
                 </div>
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('admin.halaman.kontak') }}">
+                    <a class="menu-link" href="{{ route('admin.halaman.hubungi-kami') }}">
                         <span class="menu-icon">
                             <i class="ki-duotone ki-address-book fs-2">
                                 <span class="path1"></span>
@@ -260,7 +260,7 @@
                                 <span class="path3"></span>
                             </i>
                         </span>
-                        <span class="menu-title">Kontak</span>
+                        <span class="menu-title">Hubungi Kami</span>
                     </a>
                     <!--end:Menu link-->
                 </div>
@@ -335,7 +335,7 @@
 </div>
 <div class="app-sidebar-footer flex-column-auto pt-2 pb-6 px-6" id="kt_app_sidebar_footer">
     <a href="https://instagram.com/we.talun" target="_blank" class="btn btn-flex flex-center btn-custom btn-primary overflow-hidden text-nowrap px-0 h-40px w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="instagram.com/we.talun">
-        <span class="btn-label">KKN AB.83.290</span>
+        <span class="btn-label">KKN UPNVY AB.83.290</span>
         <i class="ki-duotone ki-instagram btn-icon fs-2 me-0">
             <span class="path1"></span>
             <span class="path2"></span>

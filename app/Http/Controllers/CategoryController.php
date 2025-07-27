@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
@@ -30,7 +31,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'name' => 'required|unique:categories|string|max:255',
+            'name' => 'required|unique:categories,name,NULL,id,deleted_at,NULL|string|max:255',
         ];
         
         $validator = Validator::make($request->all(), $rules);
@@ -46,7 +47,7 @@ class CategoryController extends Controller
         $data = [
             'name' => $request->name,
             'slug' => Str::slug($request->name),
-            // 'created_by' => auth()->id(),
+            'created_by' => Auth::id(),
         ];
         
         Category::create($data);
@@ -62,7 +63,7 @@ class CategoryController extends Controller
         $category = Category::where('slug', $slug)->firstOrFail();
         
         $rules = [
-            'name' => 'required|unique:categories,name,' . $slug . '|string|max:255',
+            'name' => 'required|unique:categories,name,' . $slug . ',id,deleted_at,NULL|string|max:255',
         ];
         
         $validator = Validator::make($request->all(), $rules);
@@ -77,7 +78,7 @@ class CategoryController extends Controller
         
         $data = [
             'name' => $request->name,
-            // 'updated_by' => auth()->id(),
+            'edited_by' => Auth::id(),
         ];
         
         $category->update($data);
@@ -92,6 +93,16 @@ class CategoryController extends Controller
     public function destroy($slug)
     {
         $category = Category::where('slug', $slug)->firstOrFail();
+        if ($category->articles()->count() > 0) {
+            return redirect()->route('admin.kategori.index')->with([
+                'status' => 'danger',
+                'message' => 'Kategori tidak dapat dihapus karena memiliki artikel terkait.',
+                'title' => 'Gagal',
+            ]);
+        }
+        $category->deleted_by = Auth::id();
+        $category->slug = Str::slug($category->name) . '-' . time();
+        $category->save();
         $category->delete();
         
         return redirect()->route('admin.kategori.index')->with([

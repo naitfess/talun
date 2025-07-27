@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\Auth\LoginRequest;
+use Illuminate\Validation\ValidationException;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -22,13 +23,44 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
+    // public function store(LoginRequest $request): RedirectResponse
+    // {
+    //     $request->authenticate();
+
+    //     $request->session()->regenerate();
+
+    //     return redirect()->intended(route('admin.dashboard', absolute: false));
+    // }
+
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-        $request->session()->regenerate();
+        // $key = 'login_attempts_' . $request->ip();
+        // if (RateLimiter::tooManyAttempts($key, 3)) {
+        //     Session::put('show_captcha', true);
+        // }
+        // if (Session::get('show_captcha')) {
+        //     $request->validate([
+        //         'g-recaptcha-response' => 'required|captcha',
+        //     ]);
+        // }
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        if (Auth::attempt($request->only('email', 'password'))) {
+            // RateLimiter::clear($key);
+            // Session::forget('show_captcha');
+            $request->authenticate();
+            $request->session()->regenerate();
+            return redirect()->intended(route('admin.dashboard', absolute: false));
+        }
+
+        // RateLimiter::hit($key, 300);
+        throw ValidationException::withMessages([
+            'email' => [__('auth.failed')],
+        ]);
     }
 
     /**
@@ -42,6 +74,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 }

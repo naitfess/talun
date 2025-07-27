@@ -1,6 +1,7 @@
 @extends('layouts.be-layout')
 @section('content')
 <!--begin::Products-->
+@include('inc.alert')
 <div class="card card-flush">
     <!--begin::Card header-->
     <div class="card-header align-items-center py-5 gap-2 gap-md-5">
@@ -12,7 +13,9 @@
                     <span class="path1"></span>
                     <span class="path2"></span>
                 </i>
-                <input type="text" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-12" placeholder="Cari Dukuh" />
+                <form action="{{ route('admin.dukuh.index') }}">
+                    <input type="text" name="search" class="form-control form-control-solid w-250px ps-12" placeholder="Cari Dukuh" value="{{ request('search') }}"/>
+                </form>
             </div>
             <!--end::Search-->
         </div>
@@ -35,20 +38,21 @@
     <!--begin::Card body-->
     <div class="card-body pt-0 table-responsive">
         <!--begin::Table-->
-        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_sales_table">
+        <table class="table align-middle table-row-dashed fs-6 gy-5">
             <thead>
                 <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
-                    <th class="min-w-75px">Nama</th>
-                    <th class="text-end min-w-100px">Actions</th>
+                    <th class="min-w-75px">Nama Dukuh</th>
+                    <th class="text-end min-w-100px">Aksi</th>
                 </tr>
             </thead>
             <tbody class="fw-semibold text-gray-600">
+                @foreach ($subVillages as $subVillage)
                 <tr>
                     <td>
-                        <a href="apps/user-management/users/view.html" class="text-gray-800 text-hover-primary fs-5 fw-bold">Emma Bold</a>
+                        <a class="text-gray-800 fs-5">{{ $subVillage->name }}</a>
                     </td>
                     <td class="text-end">
-                        <button class="btn btn-icon btn-active-light-primary w-30px h-30px me-0" data-bs-toggle="modal" data-bs-target="#kt_modal_update_permission">
+                        <button class="btn btn-icon btn-active-light-primary w-30px h-30px me-0" onclick="window.location.href='{{ route('admin.dukuh.edit', ['slug' => $subVillage->slug]) }}'">
                             <i class="ki-duotone ki-setting-3 fs-3">
                                 <span class="path1"></span>
                                 <span class="path2"></span>
@@ -57,7 +61,7 @@
                                 <span class="path5"></span>
                             </i>
                         </button>
-                        <button class="btn btn-icon btn-active-light-primary w-30px h-30px" data-kt-permissions-table-filter="delete_row">
+                        <button class="btn btn-icon btn-active-light-primary w-30px h-30px delete-btn" data-bs-toggle="modal" data-bs-target="#delete-modal" data-slug="{{ $subVillage->slug }}">
                             <i class="ki-duotone ki-trash fs-3">
                                 <span class="path1"></span>
                                 <span class="path2"></span>
@@ -68,12 +72,30 @@
                         </button>
                     </td>
                 </tr>
+                @endforeach
+                @if($subVillages->isEmpty())
+                <tr>
+                    <td colspan="2" class="text-center text-muted fs-6 fw-semibold">Belum ada data yang tersedia</td>
+                </tr>
+                @endif
             </tbody>
         </table>
+        <div class="mt-7">
+            {{ $subVillages->links() }}
+        </div>
         <!--end::Table-->
     </div>
     <!--end::Card body-->
 </div>
 <!--end::Products-->
-
+@endsection
+@section('scripts')
+<script>
+    $('.delete-btn').on('click', function() {
+        var slug = $(this).data('slug');
+        var url = '{{ route("admin.dukuh.destroy", ":slug") }}';
+        url = url.replace(':slug', slug);
+        $('#delete-form').attr('action', url);
+    });
+</script>
 @endsection

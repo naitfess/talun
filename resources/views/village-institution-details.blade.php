@@ -11,22 +11,19 @@
                 <div class="col-xl-8">
                     <div class="service-details__content">
                         <div class="service-details__media">
-                            <img src="{{ asset('artima') }}/imgs/service-details/service-1.jpg" alt="image not found">
+                            <img class="dukuh-img" src="{{ asset('uploads') }}/{{ $villageInstitution->image }}" alt="image not found">
                         </div>
-                        <h4 class="title-animation">Home with Stunning Interior Design</h4>
-                        <p class="mb-45">Aliquam eros justo, posuere loborti viverra laoreet matti ullamcorper posuere viverra .Aliquam eros justo, posuere they a lobortis viverra laoreet augue mattis fermentum ullamcorper viverra laoreet Aliquam eros justo, posuere loborti viverra laoreet matti ullamcorper posuere viverra .Aliquam eros justo, posuere lobortis non Aliquam eros justo, posuere loborti viverra laoreet matti ullamcorper posuere viverra .Aliquam eros justo, posuere they a lobortis viverra laoreet augue mattis fermentum ullamcorper viverra laoreet Aliquam eros justo</p>
+                        <h4 class="title-animation">{{ $villageInstitution->name }}</h4>
+                        {!! $villageInstitution->content !!}
                     </div>
                 </div>
                 <div class="col-xl-4">
                     <div class="sidebar sidebar-rr-sticky pb-3">
                         <div class="sidebar__widget has--service">
                             <div class="sidebar__widget-service">
-                                <a href="blog-details.html">Business Planning<i class="fa-regular fa-angle-right"></i></a>
-                                <a href="blog-details.html">Interior Harmony<i class="fa-regular fa-angle-right"></i></a>
-                                <a href="blog-details.html">The Style Studio<i class="fa-regular fa-angle-right"></i></a>
-                                <a href="blog-details.html">Ambiance Interiors<i class="fa-regular fa-angle-right"></i></a>
-                                <a href="blog-details.html">Inner Sanctum Designs<i class="fa-regular fa-angle-right"></i></a>
-                                <a href="blog-details.html">The Design Collective<i class="fa-regular fa-angle-right"></i></a>
+                                @foreach ($AllVillageInstitutions as $item)
+                                    <a href="{{ route('lembaga-desa-detail', $item->slug) }}">{{ $item->name }}<i class="fa-regular fa-angle-right"></i></a>
+                                @endforeach
                             </div>
                         </div>
                     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\VillageOfficial;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -11,12 +12,19 @@ class VillageOfficialController extends Controller
 {
     public function index(Request $request)
     {
-        $query = VillageOfficial::query();
+        $query = VillageOfficial::query()->with('position');
+        
         if ($request->has('search') && !empty($request->search)) {
             $search = $request->search;
-            $query->where('name', 'like', "%$search%");
+            $query->where(function($q) use ($search) {
+                $q->where('name', 'like', "%$search%")
+                ->orWhereHas('position', function($q2) use ($search) {
+                    $q2->where('name', 'like', "%$search%");
+                });
+            });
         }
-        $data['villageOfficials'] = $query->get();
+
+        $data['villageOfficials'] = $query->paginate(10)->appends(['search' => $request->search]);
         return view('admin.village-officials.index', $data);
     }
     
@@ -46,7 +54,8 @@ class VillageOfficialController extends Controller
         $data = [
             'name' => $request->name,
             'position_id' => $request->position_id,
-            'image' => $image
+            'image' => $image,
+            'created_by' => Auth::id(),
         ];
         
         VillageOfficial::create($data);
@@ -88,7 +97,8 @@ class VillageOfficialController extends Controller
         $data = [
             'name' => $request->name,
             'position_id' => $request->position_id,
-            'image' => $image ?? $villageOfficial->image
+            'image' => $image ?? $villageOfficial->image,
+            'edited_by' => Auth::id(),
         ];
         
         $villageOfficial->update($data);
@@ -104,6 +114,8 @@ class VillageOfficialController extends Controller
     {
         $villageOfficial = VillageOfficial::findOrFail($id);
         Storage::disk('public_upload')->delete($villageOfficial->image);
+        $villageOfficial->deleted_by = Auth::id();
+        $villageOfficial->save();
         $villageOfficial->delete();
         
         return redirect()->route('admin.perangkat-desa.index')->with([

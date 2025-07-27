@@ -8,6 +8,11 @@ class Category extends Model
 {
     protected $fillable = ['name', 'slug', 'created_by', 'edited_by', 'deleted_by'];
 
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
     public function createdBy()
     {
         return $this->belongsTo(User::class, 'created_by');

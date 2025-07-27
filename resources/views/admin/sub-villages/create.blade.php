@@ -1,7 +1,8 @@
 @extends('layouts.be-layout')
 @section('content')
 <!--begin::Form-->
-<form id="kt_ecommerce_add_product_form" class="form d-flex flex-column flex-lg-row" data-kt-redirect="apps/ecommerce/catalog/products.html">
+<form class="form d-flex flex-column flex-lg-row" action="{{ route('admin.dukuh.store') }}" method="POST" enctype="multipart/form-data">
+    @csrf
     <!--begin::Aside column-->
     <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
         <!--begin::Thumbnail settings-->
@@ -32,8 +33,7 @@
                             <span class="path2"></span>
                         </i>
                         <!--begin::Inputs-->
-                        <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
-                        <input type="hidden" name="avatar_remove" />
+                        <input type="file" name="image" accept=".png, .jpg, .jpeg" />
                         <!--end::Inputs-->
                     </label>
                     <!--end::Label-->
@@ -56,7 +56,11 @@
                 </div>
                 <!--end::Image input-->
                 <!--begin::Description-->
-                <div class="text-muted fs-7">Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted</div>
+                @error('image')
+                <div class="text-danger fs-7">{{ $message }}</div>
+                @else
+                <div class="text-muted fs-7">Set a description to the product for better visibility.</div>
+                @enderror
                 <!--end::Description-->
             </div>
             <!--end::Card body-->
@@ -87,11 +91,15 @@
                                 <!--begin::Label-->
                                 <label class="form-label">Nama Dukuh</label>
                                 <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" name="product_name" class="form-control mb-2" placeholder="Product name" value="" />
+                                 <!--begin::Input-->
+                                <input type="text" name="name" class="form-control mb-2" placeholder="Nama Lembaga Desa" value="{{ old('name') }}" />
                                 <!--end::Input-->
                                 <!--begin::Description-->
-                                <div class="text-muted fs-7">A product name is required and recommended to be unique.</div>
+                                @error('name')
+                                <div class="text-danger fs-7">{{ $message }}</div>
+                                @else
+                                <div class="text-muted fs-7">Set a description to the product for better visibility.</div>
+                                @enderror
                                 <!--end::Description-->
                             </div>
                             <!--end::Input group-->
@@ -101,10 +109,15 @@
                                 <label class="form-label">Konten</label>
                                 <!--end::Label-->
                                 <!--begin::Editor-->
-                                <div id="kt_ecommerce_add_product_description" name="kt_ecommerce_add_product_description" class="min-h-200px mb-2"></div>
+                                {{-- <div class="min-h-200px mb-2" id="tinymce1"></div> --}}
+                                <textarea id="tinymce1" name="content" class="tox-target">{{ old('content') }}</textarea>
                                 <!--end::Editor-->
                                 <!--begin::Description-->
-                                <div class="text-muted fs-7">Set a description to the product for better visibility.</div>
+                                @error('content')
+                                <div class="text-danger fs-7 mt-2">{{ $message }}</div>
+                                @else
+                                <div class="text-muted fs-7 mt-2">Set a description to the product for better visibility.</div>
+                                @enderror
                                 <!--end::Description-->
                             </div>
                             <!--end::Input group-->
@@ -118,7 +131,7 @@
         </div>
         <div class="d-flex justify-content-end">
             <!--begin::Button-->
-            <a href="apps/ecommerce/catalog/products.html"S class="btn btn-light me-5">Batalkan</a>
+            <a href="{{ route('admin.dukuh.index') }}" class="btn btn-light me-5">Batalkan</a>
             <!--end::Button-->
             <!--begin::Button-->
             <button type="submit" class="btn btn-primary">
@@ -130,4 +143,8 @@
     </div>
 </div>
 </form>
+@endsection
+@section('scripts')
+<script src="{{ asset('common') }}/vendor/tinymce/tinymce.min.js"></script>
+<script src="{{ asset('common') }}/js/tinymce.js"></script>
 @endsection

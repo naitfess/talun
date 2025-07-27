@@ -1,7 +1,10 @@
 @extends('layouts.be-layout')
 @section('content')
 <!--begin::Form-->
-<form id="kt_ecommerce_add_product_form" class="form d-flex flex-column flex-lg-row" data-kt-redirect="apps/ecommerce/catalog/products.html">
+@include('inc.alert')
+<form class="form d-flex flex-column flex-lg-row" action="{{ route('admin.halaman.update', $page->slug) }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    @method('PUT')
     <!--begin::Main column-->
     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
         <!--begin::Tab content-->
@@ -13,7 +16,7 @@
                         <!--begin::Card header-->
                         <div class="card-header">
                             <div class="card-title">
-                                <h2>Hubungi Kami</h2>
+                                <h2>{{ $page->title }}</h2>
                             </div>
                         </div>
                         <!--end::Card header-->
@@ -25,10 +28,10 @@
                                     <label class="form-label">Subjudul</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="text" name="hk_subtitle" class="form-control mb-2" placeholder="Subjudul" value="" />
+                                    <input type="text" name="subtitle" class="form-control mb-2" placeholder="Subjudul" value="{{ old('subtitle') ?? $content['subtitle'] }}" />
                                     <!--end::Input-->
                                     <!--begin::Description-->
-                                    @error('hk_subtitle')
+                                    @error('subtitle')
                                     <div class="text-danger fs-7">{{ $message }}</div>
                                     @else
                                     <div class="text-muted fs-7">A product name is required and recommended to be unique.</div>
@@ -40,10 +43,10 @@
                                     <label class="form-label">Url Peta</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="text" name="hk_map_url" placeholder="Url Peta" class="form-control mb-2" value="" />
+                                    <input type="text" name="maps_url" placeholder="Url Peta" class="form-control mb-2" value="{{ old('maps_url') ?? $content['maps_url'] }}" readonly/>
                                     <!--end::Input-->
                                     <!--begin::Description-->
-                                    @error('hk_map_url')
+                                    @error('maps_url')
                                     <div class="text-danger fs-7">{{ $message }}</div>
                                     @else
                                     <div class="text-muted fs-7">Set the product VAT about.</div>
@@ -57,10 +60,10 @@
                                 <label class="form-label">Deskripsi</label>
                                 <!--end::Label-->
                                 <!--begin::Editor-->
-                                <textarea name="hk_description" class="form-control h-150px mb-2" placeholder="Deskripsi"></textarea>
+                                <textarea name="description" class="form-control h-150px mb-2" placeholder="Deskripsi">{{ old('description') ?? $content['description'] }}</textarea>
                                 <!--end::Editor-->
                                 <!--begin::Description-->
-                                @error('hk_description')
+                                @error('description')
                                 <div class="text-danger fs-7">{{ $message }}</div>
                                 @else
                                 <div class="text-muted fs-7">A product name is required and recommended to be unique.</div>
@@ -77,7 +80,7 @@
             <!--end::Tab content-->
             <div class="d-flex justify-content-end mt-10 mb-5">
                 <!--begin::Button-->
-                <a href="#" class="btn btn-light me-5">Batal</a>
+                <a href="{{ route('admin.halaman.hubungi-kami') }}" class="btn btn-light me-5">Batal</a>
                 <!--end::Button-->
                 <!--begin::Button-->
                 <button type="submit" class="btn btn-primary">

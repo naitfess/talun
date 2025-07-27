@@ -77,6 +77,9 @@
                 @endif
                 </tbody>
             </table>
+            <div class="mt-7">
+                {{ $categories->links('pagination::bootstrap-5') }}
+            </div>
             <!--end::Table-->
         </div>
         <!--end::Card body-->

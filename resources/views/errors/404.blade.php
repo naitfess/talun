@@ -49,7 +49,7 @@
 						<!--end::Illustration-->
 						<!--begin::Link-->
 						<div class="mb-0">
-							<a href="{{ route('homepage') }}" class="btn btn-sm btn-primary">Kembali ke Beranda</a>
+							<a href="{{ route('beranda') }}" class="btn btn-sm btn-primary">Kembali ke Beranda</a>
 						</div>
 						<!--end::Link-->
 					</div>

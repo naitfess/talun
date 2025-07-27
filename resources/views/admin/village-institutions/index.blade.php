@@ -14,7 +14,7 @@
                     <span class="path2"></span>
                 </i>
                 <form action="{{ route('admin.lembaga-desa.index') }}" method="GET">
-                    <input type="text" class="form-control form-control-solid w-250px ps-13" placeholder="Cari Lembaga Desa" name="search"/>
+                    <input type="text" class="form-control form-control-solid w-250px ps-13" placeholder="Cari Lembaga Desa" name="search" value="{{ request('search') }}"/>
                 </form>
             </div>
             <!--end::Search-->
@@ -76,6 +76,9 @@
                 @endif
             </tbody>
         </table>
+        <div class="mt-7">
+            {{ $villageInstitutions->links('pagination::bootstrap-5') }}
+        </div>
         <!--end::Table-->
     </div>
     <!--end::Card body-->

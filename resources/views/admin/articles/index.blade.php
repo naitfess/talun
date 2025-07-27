@@ -14,7 +14,7 @@
                     <span class="path2"></span>
                 </i>
                 <form action="{{ route('admin.artikel.index') }}" method="GET">
-                    <input type="text" name="search" class="form-control form-control-solid w-250px ps-12" placeholder="Cari Judul" value="{{ request('search') }}" />
+                    <input type="text" name="search" class="form-control form-control-solid w-300px ps-12" placeholder="Cari Judul atau Kategori" value="{{ request('search') }}" />
                 </form>
             </div>
             <!--end::Search-->
@@ -22,17 +22,6 @@
         <!--end::Card title-->
         <!--begin::Card toolbar-->
         <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-            <div class="w-100 mw-150px">
-                <!--begin::Select2-->
-                <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Kategori">
-                    <option></option>
-                    <option value="all">All</option>
-                    @foreach(\App\Helpers\AppHelper::getCategories() as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endforeach
-                </select>
-                <!--end::Select2-->
-            </div>
             <!--begin::Add product-->
             <button type="button" class="btn btn-light-primary" onclick="window.location.href='{{ route('admin.artikel.create') }}'">
                 <i class="ki-duotone ki-plus-square fs-2">
@@ -122,6 +111,9 @@
             </tbody>
         </table>
         <!--end::Table-->
+        <div class="mt-7">
+            {{ $articles->links('pagination::bootstrap-5') }}
+        </div>
     </div>
     <!--end::Card body-->
 </div>

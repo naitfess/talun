@@ -13,7 +13,7 @@ class SliderController extends Controller
     public function index()
     {
         $data['sliders'] = Slider::query()
-        ->get();
+            ->paginate(3);
         return view('admin.sliders.index', $data);
     }
     
@@ -44,7 +44,7 @@ class SliderController extends Controller
             'image' => $image,
             'title' => $request->title,
             'subtitle' => $request->subtitle,
-            // 'created_by' => Auth::id(),
+            'created_by' => Auth::id(),
         ];
         
         Slider::create($data);
@@ -87,7 +87,7 @@ class SliderController extends Controller
             'image' => $image ?? $slider->image,
             'title' => $request->title,
             'subtitle' => $request->subtitle,
-            // 'updated_by' => Auth::id(),
+            'edited_by' => Auth::id(),
         ];
         $slider->update($data);
         
@@ -102,6 +102,8 @@ class SliderController extends Controller
     {
         $slider = Slider::findOrFail($id);
         Storage::disk('public_upload')->delete($slider->image);
+        $slider->deleted_by = Auth::id();
+        $slider->save();
         $slider->delete();
         
         return redirect()->route('admin.slider.index')->with([

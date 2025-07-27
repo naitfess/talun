@@ -1,48 +1,25 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\GuestController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('homepage');
-})->name('homepage');
-
-Route::get('/about-us', function () {
-    return view('about-us');
-})->name('about-us');
-
-Route::get('/articles', function () {
-    return view('articles');
-})->name('articles');
-
-Route::get('/article-details', function () {
-    return view('article-details');
-})->name('article-details');
-
-Route::get('/contact-us', function () {
-    return view('contact-us');
-})->name('contact-us');
-
-Route::get('/page-details', function () {
-    return view('page-details');
-})->name('page-details');
-
-Route::get('/village-institutions', function () {
-    return view('village-institutions');
-})->name('village-institutions');
-
-Route::get('/village-institution-details', function () {
-    return view('village-institution-details');
-})->name('village-institution-details');
-
-Route::get('/sub-villages', function () {
-    return view('sub-villages');
-})->name('sub-villages');
-
-Route::get('/sub-village-details', function () {
-    return view('sub-village-details');
-})->name('sub-village-details');
-
+Route::controller(GuestController::class)->group(function () {
+    Route::get('/', 'beranda')->name('beranda');
+    Route::get('/sejarah-desa', 'sejarahDesa')->name('sejarah-desa');
+    Route::get('/visi-misi', 'visiMisi')->name('visi-misi');
+    Route::get('/monografi-desa', 'monografiDesa')->name('monografi-desa');
+    Route::get('/struktur-organisasi', 'strukturOrganisasi')->name('struktur-organisasi');
+    Route::get('/perangkat-desa', 'perangkatDesa')->name('perangkat-desa');
+    Route::get('/lembaga-desa', 'lembagaDesa')->name('lembaga-desa');
+    Route::get('/lembaga-desa/{slug}', 'lembagaDesaDetail')->name('lembaga-desa-detail');
+    Route::get('/kesehatan', 'kesehatan')->name('kesehatan');
+    Route::get('/dukuh', 'dukuh')->name('dukuh');
+    Route::get('/dukuh/{slug}', 'dukuhDetail')->name('dukuh-detail');
+    Route::get('/artikel', 'artikel')->name('artikel');
+    Route::get('/artikel/kategori/{slug}', 'artikelKategori')->name('artikel-kategori');
+    Route::get('/artikel/{slug}', 'artikelDetail')->name('artikel-detail');
+    Route::get('/hubungi-kami', 'hubungiKami')->name('hubungi-kami');
+});
 
 // route for the dashboard
 

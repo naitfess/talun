@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\VillageInstitution;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -12,7 +13,13 @@ class VillageInstitutionController extends Controller
 {
     public function index(Request $request)
     {
-        $data['villageInstitutions'] = VillageInstitution::get();
+        $query = VillageInstitution::query();
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->search;
+            $query->where('name', 'like', "%$search%");
+        }
+        
+        $data['villageInstitutions'] = $query->paginate(10)->appends(['search' => $request->search]);
         return view('admin.village-institutions.index', $data);
     }
     
@@ -43,6 +50,7 @@ class VillageInstitutionController extends Controller
             'name' => $request->name,
             'slug' => Str::slug($request->name),
             'content' => $request->content,
+            'created_by' => Auth::id(),
         ];
         
         VillageInstitution::create($data);
@@ -84,6 +92,7 @@ class VillageInstitutionController extends Controller
             'name' => $request->name,
             // 'slug' => Str::slug($request->name),
             'content' => $request->content,
+            'edited_by' => Auth::id(),
         ];
         
         $villageInstitution->update($data);
@@ -99,6 +108,9 @@ class VillageInstitutionController extends Controller
     {
         $villageInstitution = VillageInstitution::findOrFail($id);
         Storage::disk('public_upload')->delete($villageInstitution->image);
+        $villageInstitution->deleted_by = Auth::id();
+        $villageInstitution->slug = Str::slug($villageInstitution->name) . '-' . time();
+        $villageInstitution->save();
         $villageInstitution->delete();
         
         return redirect()->route('admin.lembaga-desa.index')->with([

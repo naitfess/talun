@@ -1,3 +1,6 @@
+@php
+    $setting = \App\Helpers\AppHelper::getSetting();
+@endphp
 <!doctype html>
 <html class="no-js" lang="zxx">
 

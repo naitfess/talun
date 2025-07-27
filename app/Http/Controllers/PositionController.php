@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Position;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class PositionController extends Controller
@@ -15,7 +16,7 @@ class PositionController extends Controller
             $search = request()->search;
             $query->where('name', 'like', "%$search%");
         }
-        $data['positions'] = $query->paginate(10)->appends(['search' => $request->search]);
+        $data['positions'] = $query->paginate(5)->appends(['search' => $request->search]);
         return view('admin.positions.index', $data);
     }
     
@@ -43,7 +44,7 @@ class PositionController extends Controller
         
         $data = [
             'name' => $request->name,
-            // 'created_by' => auth()->id(),
+            'created_by' => Auth::id(),
         ];
         
         Position::create($data);
@@ -74,7 +75,7 @@ class PositionController extends Controller
         
         $data = [
             'name' => $request->name,
-            // 'updated_by' => auth()->id(),
+            'edited_by' => Auth::id(),
         ];
 
         $position->update($data);
@@ -89,6 +90,15 @@ class PositionController extends Controller
     public function destroy($id)
     {
         $position = Position::findOrFail($id);
+        if ($position->users()->count() > 0) {
+            return redirect()->route('admin.posisi.index')->with([
+                'status' => 'danger',
+                'message' => 'Posisi tidak dapat dihapus karena memiliki pengguna terkait.',
+                'title' => 'Gagal',
+            ]);
+        }
+        $position->deleted_by = Auth::id();
+        $position->save();
         $position->delete();
 
         return redirect()->route('admin.posisi.index')->with([
