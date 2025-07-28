@@ -15,6 +15,7 @@
 /node_modules
 /public/metronic
 /public/artima
+/public/uploads
 /public/build
 /public/hot
 /public/storage
