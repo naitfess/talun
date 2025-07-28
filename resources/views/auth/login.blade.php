@@ -45,14 +45,13 @@
                     <img class="theme-dark-show mx-auto mw-100 w-150px w-lg-300px mb-10 mb-lg-20" src="{{ asset('metronic') }}/media/auth/agency-dark.png" alt="" />
                     <!--end::Image-->
                     <!--begin::Title-->
-                    <h1 class="text-gray-800 fs-2qx fw-bold text-center mb-7">Fast, Efficient and Productive</h1>
+                    <h1 class="text-gray-800 fs-2qx fw-bold text-center mb-7">Portal Desa Talun</h1>
                     <!--end::Title-->
                     <!--begin::Text-->
-                    <div class="text-gray-600 fs-base text-center fw-semibold">In this kind of post, 
-                        <a href="#" class="opacity-75-hover text-primary me-1">the blogger</a>introduces a person they’ve interviewed 
-                        <br />and provides some background information about 
-                        <a href="#" class="opacity-75-hover text-primary me-1">the interviewee</a>and their 
-                        <br />work following this is a transcript of the interview.</div>
+                    <div class="text-gray-600 fs-base text-center fw-semibold">
+                        Sistem Informasi Desa Talun, Kemalang, Klaten. 
+                        <br />Silakan login untuk mengakses layanan administrasi,
+                        <br />informasi, dan komunikasi desa secara digital.</div>
                         <!--end::Text-->
                     </div>
                     <!--end::Content-->
@@ -76,7 +75,7 @@
                                         <h1 class="text-gray-900 fw-bolder mb-3">Sign In</h1>
                                         <!--end::Title-->
                                         <!--begin::Subtitle-->
-                                        <div class="text-gray-500 fw-semibold fs-6">Your Social Campaigns</div>
+                                        <div class="text-gray-500 fw-semibold fs-6">Portal Desa Talun</div>
                                         <!--end::Subtitle=-->
                                     </div>
                                     <!--begin::Heading-->
