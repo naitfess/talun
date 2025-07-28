@@ -4,7 +4,7 @@
         <!--begin::Copyright-->
         <div class="text-gray-900 order-2 order-md-1">
             <span class="text-muted fw-semibold me-1">2025&copy;</span>
-            <a href="https://instagram.com/we.talun" target="_blank" class="text-gray-800 text-hover-primary">KKN UPNVY AB.83.290</a>
+            <a href="https://instagram.com/we.talun" target="_blank" class="text-gray-800 text-hover-primary">KKN UPNVY AD.83.290</a>
         </div>
         <!--end::Copyright-->
     </div>

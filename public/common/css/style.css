@@ -300,3 +300,11 @@
     font-weight: 600;
     color: var(--rr-heading-primary);
 }
+
+.sidebar-fixed{
+    z-index: 9999999;
+}
+
+.offcanvas__logo a img {
+    width: 120px;
+}

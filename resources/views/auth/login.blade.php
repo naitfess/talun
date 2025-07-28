@@ -114,7 +114,7 @@
                             <div class="d-flex flex-stack justify-content-center"> 
                                 <!--begin::Links-->
                                 <div class="d-flex fw-semibold fs-base">
-                                    <a href="https://instagram.com/we.talun" class="text-gray-800 text-hover-primary " target="_blank">KKN UPNVY AB.83.290</a>
+                                    <a href="https://instagram.com/we.talun" class="text-gray-800 text-hover-primary " target="_blank">KKN UPNVY AD.83.290</a>
                                 </div>
                                 <!--end::Links-->
                             </div>

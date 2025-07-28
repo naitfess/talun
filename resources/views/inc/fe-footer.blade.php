@@ -91,7 +91,7 @@
             <div class="container">
                 <div class="footer-3__bottom-wrapper">
                     <div class="footer-3__copyright text-lg-start text-center">
-                        <p class="mb-0">{{ $setting->copyright }}. Dikembangkan oleh <a href="https://www.instagram.com/we.talun/">KKN UPNVY AB.83.290</a></p>
+                        <p class="mb-0">{{ $setting->copyright }}. Dikembangkan oleh <a href="https://www.instagram.com/we.talun/">KKN UPNVY AD.83.290</a></p>
                     </div>
     
                     <div class="footer-3__social">
