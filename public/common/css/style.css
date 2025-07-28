@@ -308,3 +308,10 @@
 .offcanvas__logo a img {
     width: 120px;
 }
+
+.about-us-2__media img {
+    width: 100%;
+    height: 550px;
+    -o-object-fit: cover;
+    object-fit: cover;
+}

@@ -25,13 +25,15 @@ class ArticleController extends Controller
             });
         }
         
+        $data['page_title'] = 'Artikel';
         $data['articles'] = $query->paginate(10)->appends(['search' => $request->search]);
         return view('admin.articles.index', $data);
     }
     
     public function create()
     {
-        return view('admin.articles.create');
+        $data['page_title'] = 'Artikel';
+        return view('admin.articles.create', $data);
     }
     
     public function store(Request $request)
@@ -72,6 +74,7 @@ class ArticleController extends Controller
     
     public function edit($slug)
     {
+        $data['page_title'] = 'Artikel';
         $data['article'] = Article::where('slug', $slug)->firstOrFail();
         return view('admin.articles.edit', $data);
     }

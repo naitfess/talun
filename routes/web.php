@@ -11,6 +11,7 @@ Route::controller(GuestController::class)->group(function () {
     Route::get('/struktur-organisasi', 'strukturOrganisasi')->name('struktur-organisasi');
     Route::get('/perangkat-desa', 'perangkatDesa')->name('perangkat-desa');
     Route::get('/lembaga-desa', 'lembagaDesa')->name('lembaga-desa');
+    Route::get('/badan-permusyawaratan-desa', 'badanPermusyawaratanDesa')->name('badan-permusyawaratan-desa');
     Route::get('/lembaga-desa/{slug}', 'lembagaDesaDetail')->name('lembaga-desa-detail');
     Route::get('/kesehatan', 'kesehatan')->name('kesehatan');
     Route::get('/dukuh', 'dukuh')->name('dukuh');

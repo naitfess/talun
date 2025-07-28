@@ -86,7 +86,7 @@
                                         <ul class="submenu">
                                             <li><a href="{{ route('struktur-organisasi') }}">Struktur Organisasi</a></li>
                                             <li><a href="{{ route('perangkat-desa') }}">Perangkat Desa</a></li>
-                                            <li><a href="{{ route('lembaga-desa') }}">Lembaga Desa</a></li>
+                                            <li><a href="{{ route('badan-permusyawaratan-desa') }}">Badan Permusyawaratan Desa</a></li>
                                         </ul>
                                     </li>
                                     <li class="has-dropdown {{ request()->is('kesehatan') || request()->is('dukuh*') ? 'active' : '' }}">

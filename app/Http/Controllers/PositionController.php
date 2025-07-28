@@ -91,7 +91,7 @@ class PositionController extends Controller
     public function destroy($id)
     {
         $position = Position::findOrFail($id);
-        if ($position->users()->count() > 0) {
+        if ($position->villageOfficials()->count() > 0) {
             return redirect()->route('admin.posisi.index')->with([
                 'status' => 'danger',
                 'message' => 'Posisi tidak dapat dihapus karena memiliki pengguna terkait.',

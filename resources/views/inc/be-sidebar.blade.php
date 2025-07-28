@@ -184,13 +184,21 @@
                             </a>
                         </div>
                         <div class="menu-item">
+                            <a class="menu-link" href="{{ route('admin.halaman.badan-permusyawaratan-desa') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Badan Permusyawaratan Desa</span>
+                            </a>
+                        </div>
+                        {{-- <div class="menu-item">
                             <a class="menu-link" href="{{ route('admin.halaman.lembaga-desa') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Lembaga Desa</span>
                             </a>
-                        </div>
+                        </div> --}}
                         <!--end:Menu item-->
                     </div>
                     <!--end:Menu sub-->
@@ -273,7 +281,7 @@
                     <!--end:Menu content-->
                 </div>
                 <!--end:Menu item-->
-                <div class="menu-item">
+                {{-- <div class="menu-item">
                     <!--begin:Menu link-->
                     <a class="menu-link" href="{{ route('admin.lembaga-desa.index') }}">
                         <span class="menu-icon">
@@ -286,7 +294,7 @@
                         <span class="menu-title">Lembaga Desa</span>
                     </a>
                     <!--end:Menu link-->
-                </div>
+                </div> --}}
                 <!--begin:Menu item-->
                 <div class="menu-item">
                     <!--begin:Menu link-->

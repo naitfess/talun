@@ -110,11 +110,19 @@ class PageSeeder extends Seeder
                         'description' => 'tes'
                     ]),
                 ],
+                // [
+                //     'title' => 'Lembaga Desa',
+                //     'slug' => 'lembaga-desa',
+                //     'content' => json_encode([
+                //         'subtitle' => 'Lembaga Desa Talun',
+                //         'description' => 'tes'
+                //     ]),
+                // ],
                 [
-                    'title' => 'Lembaga Desa',
-                    'slug' => 'lembaga-desa',
+                    'title' => 'Badan Permusyawaratan Desa',
+                    'slug' => 'badan-permusyawaratan-desa',
                     'content' => json_encode([
-                        'subtitle' => 'Lembaga Desa Talun',
+                        'subtitle' => 'Badan Permusyawaratan Desa',
                         'description' => 'tes'
                     ]),
                 ],

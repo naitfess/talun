@@ -76,6 +76,14 @@ class PageController extends Controller
         $data['content'] = json_decode($data['page']->content, true);
         return view('admin.pages.page-detail', $data);
     }
+
+    public function badanPermusyawaratanDesa()
+    {
+        $data['page_title'] = 'Badan Permusyawaratan Desa';
+        $data['page'] = Page::where('slug', 'badan-permusyawaratan-desa')->first();
+        $data['content'] = json_decode($data['page']->content, true);
+        return view('admin.pages.page-detail', $data);
+    }
     
     public function hubungiKami()
     {

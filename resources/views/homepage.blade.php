@@ -184,7 +184,7 @@
                 <div class="col-lg-6">
                     <div class="choose-us__media">
                         <div class="choose-us__shape rr-upDown"><img src="{{ asset('artima') }}/imgs/update/choose-us/choose-us-shape.png" alt="image not found"></div>
-                        <img class="wow clip-a-z" src="{{ asset('artima') }}/imgs/update/choose-us/choose-us.jpg" alt="image not found">
+                        <img class="wow clip-a-z" src="{{ asset('uploads') }}/{{ $content['sdt_image'] }}" alt="image not found">
                         
                         <div class="choose-us__box">
                             <div class="choose-us__icon mb-10"><img src="{{ asset('artima') }}/imgs/update/choose-us/choose-us-1.png" alt="image not found"></div>

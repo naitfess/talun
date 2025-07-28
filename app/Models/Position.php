@@ -8,6 +8,11 @@ class Position extends Model
 {
     protected $fillable = ['name', 'created_by', 'edited_by', 'deleted_by'];
 
+    public function villageOfficials()
+    {
+        return $this->hasMany(VillageOfficial::class, 'position_id');
+    }
+
     public function createdBy()
     {
         return $this->belongsTo(User::class, 'created_by');

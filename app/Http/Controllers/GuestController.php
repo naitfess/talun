@@ -73,6 +73,13 @@ class GuestController extends Controller
         $data['content'] = json_decode($data['page']->content, true);
         return view('page-details', $data);
     }
+
+    public function badanPermusyawaratanDesa()
+    {
+        $data['page'] = Page::where('slug', 'badan-permusyawaratan-desa')->first();
+        $data['content'] = json_decode($data['page']->content, true);
+        return view('page-details', $data);
+    }
     
     public function lembagaDesa()
     {

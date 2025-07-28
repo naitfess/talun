@@ -17,7 +17,7 @@
                             </nav>
                         </div>
                         @endif
-                        @if (request()->is('struktur-organisasi') || request()->is('perangkat-desa') || request()->is('lembaga-desa'))
+                        @if (request()->is('struktur-organisasi') || request()->is('perangkat-desa') || request()->is('badan-permusyawaratan-desa'))
                         <div class="breadcrumb__menu">
                             <nav>
                                 <ul>

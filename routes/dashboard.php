@@ -72,6 +72,8 @@ Route::prefix('admin/halaman')->middleware('auth')->name('admin.halaman.')->grou
     Route::get('/hubungi-kami', [PageController::class, 'hubungiKami'])->name('hubungi-kami');
     Route::get('/kesehatan', [PageController::class, 'kesehatan'])->name('kesehatan');
     Route::put('/{slug}/update', [PageController::class, 'update'])->name('update');
+    Route::get('/badan-permusyawaratan-desa', [PageController::class, 'badanPermusyawaratanDesa'])->name('badan-permusyawaratan-desa');
+    
 });
 
 Route::prefix('admin/perangkat-desa')->middleware('auth')->name('admin.perangkat-desa.')->group(function () {
