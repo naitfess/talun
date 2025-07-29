@@ -172,7 +172,7 @@
                             <h2 class="section-2__title text-capitalize title-animation">{{ $content['sdt_subtitle'] }}</h2>
                         </div>
                         <p class="text-justify">{{ $content['sdt_description'] }}</p>
-                        <a href="#" class="rr-btn">
+                        <a href="{{ route('sejarah-desa') }}" class="rr-btn">
                             <span class="btn-wrap">
                                 <span class="text-one">Selengkapnya</span>
                                 <span class="text-two">Selengkapnya</span>
@@ -260,8 +260,8 @@
                             <p>
                                 {!! Str::limit($article->content, 100, '...') !!}
                             </p>
-                            
-                            <a class="read-more" href="#">Selengkapnya
+
+                            <a class="read-more" href="{{ route('artikel-detail', ['slug' => $article->slug]) }}">Selengkapnya
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 6H11" stroke="#767676" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M6 1L11 6L6 11" stroke="#767676" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
