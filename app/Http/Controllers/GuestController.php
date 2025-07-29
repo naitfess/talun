@@ -27,6 +27,7 @@ class GuestController extends Controller
         foreach ($data['articles'] as $article) {
             $article->content = preg_replace('/<(?!\/?p\b)[^>]+>/i', '', $article->content);
             $article->content = preg_replace('/<p>\s*(&nbsp;)?\s*<\/p>/i', '', $article->content);
+            $article->content = strip_tags($article->content);
         }
         $data['page_hk'] = Page::where('slug', 'hubungi-kami')->first();
         $data['content_hk'] = json_decode($data['page_hk']->content, true);
@@ -131,6 +132,7 @@ class GuestController extends Controller
         foreach ($data['articles'] as $article) {
             $article->content = preg_replace('/<(?!\/?p\b)[^>]+>/i', '', $article->content);
             $article->content = preg_replace('/<p>\s*(&nbsp;)?\s*<\/p>/i', '', $article->content);
+            $article->content = strip_tags($article->content);
         }
         return view('articles', $data);
     }

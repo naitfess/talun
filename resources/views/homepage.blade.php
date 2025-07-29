@@ -226,7 +226,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <a href="blog-details.html" class="rr-btn blog-btn ">
+                    <a href="{{ route('artikel') }}" class="rr-btn blog-btn ">
                         <span class="btn-wrap">
                             <span class="text-one">Lihat Semua Artikel
                                 <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -248,16 +248,18 @@
                 @foreach ($articles as $article)
                 <div class="col-lg-4">
                     <div class="blog-grid__item">
-                        <a href="blog-details.html" class="blog-grid__media">
+                        <a href="{{ route('artikel-detail', ['slug' => $article->slug]) }}" class="blog-grid__media">
                             <img src="{{ asset('uploads') }}/{{ $article->image }}" alt="image not found">
                         </a>
                         <div class="blog-grid__content">
                             <ul class="blog-grid__meta">
                                 <li><a>{{ \Carbon\Carbon::parse($article->created_at)->translatedFormat('d F Y') }}</a></li>
                             </ul>
-                            <h6 class="mb-10"><a href="blog-details.html">{{ $article->title }}</a></h6>
+                            <h6 class="mb-10"><a href="{{ route('artikel-detail', ['slug' => $article->slug]) }}">{{ Str::limit($article->title, 45, '...') }}</a></h6>
                             
-                            {!! Str::limit($article->content, 100, '...') !!}
+                            <p>
+                                {!! Str::limit($article->content, 100, '...') !!}
+                            </p>
                             
                             <a class="read-more" href="#">Selengkapnya
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">

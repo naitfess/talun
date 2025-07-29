@@ -27,9 +27,10 @@
                                 <li>{{ \Carbon\Carbon::parse($article->created_at)->translatedFormat('d F Y') }}</li>
                                 <li><a href="{{ route('artikel-kategori', ['slug' => $article->category->slug]) }}">{{ $article->category->name }}</a></li>
                             </ul>
-                            <h6 class="mb-10"><a href="{{ route('artikel-detail', ['slug' => $article->slug]) }}">{{ $article->title }}</a></h6>
-                            {!! Str::limit($article->content, 100) !!}
-
+                            <h6 class="mb-10"><a href="{{ route('artikel-detail', ['slug' => $article->slug]) }}">{{ Str::limit($article->title, 45, '...') }}</a></h6>
+                            <p>
+                                {!! Str::limit($article->content, 100) !!}
+                            </p>
                             <a class="read-more" href="{{ route('artikel-detail', ['slug' => $article->slug]) }}">Selengkapnya
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 6H11" stroke="#767676" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
