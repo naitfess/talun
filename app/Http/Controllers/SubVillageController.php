@@ -19,14 +19,15 @@ class SubVillageController extends Controller
             $search = request()->search;
             $query->where('name', 'like', "%$search%");
         }
-        
+        $data['page_title'] = 'Dukuh';
         $data['subVillages'] = $query->paginate(10)->appends(['search' => $request->search]);
         return view('admin.sub-villages.index', $data);
     }
     
     public function create()
     {
-        return view('admin.sub-villages.create');
+        $data['page_title'] = 'Dukuh';
+        return view('admin.sub-villages.create', $data);
     }
     
     public function store(Request $request)
@@ -65,6 +66,7 @@ class SubVillageController extends Controller
     
     public function edit($slug)
     {
+        $data['page_title'] = 'Dukuh';
         $data['subVillage'] = SubVillage::where('slug', $slug)->firstOrFail();
         return view('admin.sub-villages.edit', $data);
     }
