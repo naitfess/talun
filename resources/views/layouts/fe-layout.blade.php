@@ -2,7 +2,7 @@
 $setting = \App\Helpers\AppHelper::getSetting();
 @endphp
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="id">
 
 
 <!-- Mirrored from html.rrdevs.net/artima/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 02 Jul 2025 12:09:30 GMT -->
@@ -11,8 +11,22 @@ $setting = \App\Helpers\AppHelper::getSetting();
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Desa Talun</title>
     <meta name="description" content="Desa Talun">
-    <meta name="author" content="ranaahmead">
+    <meta name="keywords" content="desa, talun, kabupaten, website desa, desa talun, website desa talun, desa talun kabupaten, website desa talun kabupaten">
+    <meta name="author" content="KKN UPNVY AD.83.290">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ url()->current() }}">
+     <!-- Open Graph -->
+    <meta property="og:title" content="{{ $setting->site_title ?? 'Desa Talun' }}">
+    <meta property="og:description" content="{{ $setting->meta_description ?? 'Desa Talun' }}">
+    <meta property="og:image" content="{{ asset('uploads') }}/{{ $setting->logo_footer }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $setting->site_title ?? 'Desa Talun' }}">
+    <meta name="twitter:description" content="{{ $setting->meta_description ?? 'Desa Talun' }}">
+    <meta name="twitter:image" content="{{ asset('uploads') }}/{{ $setting->logo_footer }}">
     <!-- Place favicon.ico in the root directory -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('common') }}/img/favicon.ico">
     <!-- CSS here -->
